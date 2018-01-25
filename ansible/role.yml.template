@@ -1,0 +1,132 @@
+---
+- name: Install Libs for Compile
+  yum:
+    name: "{{item}}"
+    state: "present"
+#  when: '"{{ansible_distribution}}" == "CentOS"'
+  with_items:
+    - "openssl-devel"
+    - "zlib-devel"
+    - "gcc"
+    - "sqlite-devel"
+    - "readline-devel"
+    - "patch"
+
+- name: TimeZone Make
+  shell: cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+- name: Download Python Source Package
+  get_url:
+    url: "{{py_info.src_url}}"
+    dest: "/tmp/python-source.tgz"
+
+
+
+
+
+- name: copy ecs_expansion.sh script
+  copy: src=ecs_expansion.sh dest=/tmp/ecs_expansion.sh mode=0755 owner=root group=root
+
+- name: copy mount_vdb.sh script
+  copy: src=mount_vdb.sh dest=/tmp/mount_vdb.sh mode=0755 owner=root group=root
+
+
+
+
+
+
+- name: Stop NTP Service
+  service: name=ntpd enabled=no state=stopped
+
+- name: Set Crontab for NTP to 192.168.0.23
+  cron: name="ntp" minute=60 job="/usr/sbin/ntpdate 192.168.0.23"
+
+- name: Remove Current Repo
+  shell: rm -f /etc/yum.repos.d/*
+
+- name: Add Ali CentOS 6 Repo
+  shell: curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
+
+- name: Add Ali CentOS 7 Repo
+  shell: curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+
+- name: Make Cache and Add EPEL
+  shell: yum makecache;yum install epel-release -y;yum update -y
+
+
+
+
+
+
+
+
+
+---
+- stat:
+    path: /data/home
+  register: base
+
+- name: Create Directory
+  file: path=/data/home state=directory owner=root group=root mode=0755 recurse=yes
+  when: "base.stat.exists == false and '{{system.users.personal[0].state}}' == 'present'"
+
+#- name: Check if existinig public user
+#  shell: /bin/cat /etc/passwd | grep '{{item.name}} ' | /usr/bin/wc -l 
+#  register: user_exist
+#  with_items: "{{system.users.public|default([])}}"
+  #when: "'{{system.users.personal[0].state}}' == 'present'"
+
+- stat:
+    path: /data/home/{{item.name}}
+  with_items: "{{system.users.public|default([])}}"
+  register: basssse
+
+- name: Create Accounts
+  user:
+    name: "{{item.name}}"
+    home: "{{item.home}}"
+    state: "present"
+  with_items: "{{system.users.public|default([])}}"
+  ignore_errors: yes
+  #when: "user_exist.results[0].stdout == '0' or basssse.stat.exists == false"
+  when: "basssse.results[0].stat.exists == false"
+
+- name: Set HOME Permission
+  file:
+      path: "{{item.home}}"
+      mode: "0770"
+      state: "directory"
+  with_items: "{{system.users.public|default([])}}"
+  #when: "user_exist.results[0].stdout == '0' or basssse.stat.exists == false" 
+  when: "basssse.results[0].stat.exists == false"
+
+
+- name: Set HOME Permission
+  file:
+      path: "{{item.home}}"
+      mode: "0770"
+      state: "directory"
+  with_items: "{{system.users.public|default([])}}"
+  #when: "user_exist.results[0].stdout == '0' or basssse.stat.exists == false" 
+  when: "basssse.results[0].stat.exists == false"
+
+- stat:
+    path: "/home/{{item.name}}"
+  with_items: "{{system.users.public}}"
+  register: link
+
+- name: Create Soft link for public account
+  shell: ln -s "{{item.home}}" "/home/{{item.name}}"
+  with_items: "{{system.users.public}}"
+  when: "link.results[0].stat.exists == False"
+
+
+
+
+
+
+
+
+
