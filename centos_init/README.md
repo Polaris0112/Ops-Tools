@@ -1,8 +1,8 @@
 ## CentOS系统初始化工具
 
-###使用介绍
+### 使用介绍
 
-由于公司主要使用的服务器都是基于CentOS系统，所以平时日常接触的都是CentOS比较多，对于CentOS6/CentOS7的初始化也是做成了一个工具。
+由于工作环境主要使用的服务器都是基于CentOS系统，所以平时日常接触的都是CentOS比较多，对于CentOS6/CentOS7的初始化也是做成了一个工具。
 
 -  `init_centos.sh`：无需修改任何配置参数，运行`sh init_centos.sh`即可，初始化内容为：
   -  更换yum源为阿里云源
