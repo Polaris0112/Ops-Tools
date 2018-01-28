@@ -3,13 +3,14 @@
 
 CropID='xxxxxx'
 Secret='xxxxxx'
+agentid=1
 GURL="https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=$CropID&corpsecret=$Secret"
 Gtoken=$(/usr/bin/curl -s -G $GURL | awk -F\" '{print $4}')
 
 PURL="https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=$Gtoken"
 
 function body() {
-        local int AppID=1
+        local AppID=$agentid
         local UserID=$1
         local PartyID=1
         local Msg=$(echo "$@" | cut -d" " -f3-)
