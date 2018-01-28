@@ -17,7 +17,7 @@
 salt "*" test.ping
 ```
 
-2.在所有minion(客户端)上执行‘uptime’命令：
+2.在所有minion(客户端)上执行'uptime'命令：
 
 ```shell
 salt '*' cmd.run 'uptime'
@@ -56,7 +56,7 @@ apache-service:
 
 
 
-salt ‘*’ state.sls apache #执行状态管理脚本
+salt '*' state.sls apache #执行状态管理脚本
 ```
 
 5.编辑salt的入口文件：
@@ -73,8 +73,8 @@ base:
     - apache
 
 
-salt ‘*’ state.highstate #通过入口文件执行安装apache的脚本 
-salt ‘*’ state.highstate test=True #生产环境上面命令很危险，要先测试下
+salt '*' state.highstate #通过入口文件执行安装apache的脚本 
+salt '*' state.highstate test=True #生产环境上面命令很危险，要先测试下
 ```
 
 #### SaltStack-数据系统Grains
@@ -91,7 +91,7 @@ salt 'SH_T_test_03.gigold-idc.com' grains.items
 salt 'SH_T_test_03.gigold-idc.com' grains.get ip_interfaces:eth0
 ```
 
-3.通过grains判断在哪些客户端上执行‘W’命令：
+3.通过grains判断在哪些客户端上执行'W'命令：
 
 ```shell
 salt -G 'os:Centos' cmd.run 'w'
@@ -114,7 +114,7 @@ base:
     - match: grain      #要定义通过grain方法获取参数
     - apache
 
-salt ‘*’ state.highstate #通过top筛选匹配的grain
+salt '*' state.highstate #通过top筛选匹配的grain
 ```
 
 5.通过master刷新minion的grains参数：
@@ -138,7 +138,7 @@ def my_grains():
     grains['edu'] = 'wmjedu'
     return grains
 
-salt ‘*’ saltutil.sync_grains #编辑完后要记得推送到minion上
+salt '*' saltutil.sync_grains #编辑完后要记得推送到minion上
 ```
 
 7. Grains的优先级：
@@ -183,8 +183,8 @@ base:
   'SH_T_ansiblecli_02.gigold-idc.com':
     - apache
 
-salt ‘*’ saltutil.refresh_pillar #配置完成后要记得刷新pillar 
-salt ‘*’ pillar.items #查看配置的pillar
+salt '*' saltutil.refresh_pillar #配置完成后要记得刷新pillar 
+salt '*' pillar.items #查看配置的pillar
 ```
 
 3.刷新pillar：
@@ -201,7 +201,7 @@ salt -I "apache:httpd" cmd.run 'w'
 
 5.grains和pillar的区别：
 
-![](https://github.com/Polaris0112/Ops-Tools/tree/master/saltStack/grains_and_pillars.png)
+![](https://github.com/Polaris0112/Ops-Tools/blob/master/saltStack/grains_and_pillars.png)
 
 #### SaltStack-远程执行-进阶
 
@@ -284,7 +284,7 @@ mysql.db: 'salt'
 mysql.port: 3306
 
 /etc/init.d/salt-master restart 
-salt ‘*’ cmd.run ‘free -m’ #执行完成后可以在数据库里面查看
+salt '*' cmd.run 'free -m' #执行完成后可以在数据库里面查看
 ```
 
 #### SaltStack-配置管理
@@ -316,7 +316,7 @@ vim dns.sls
     - defaults:
       DNS_SERVER: 223.6.6.6
 
-salt ‘*’ state.sls dns #直接执行 
+salt '*' state.sls dns #直接执行 
 ```
 
 下面用top来执行 
@@ -328,7 +328,7 @@ base:
   '*':
     - dns
 
-salt ‘*’ state.highstate #使用高级状态执行
+salt '*' state.highstate #使用高级状态执行
 ```
 
 3.状态间的依赖关系：
