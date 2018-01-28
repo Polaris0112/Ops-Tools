@@ -5,15 +5,15 @@
 该处是放置工作以来使用Zabbix用到的自定义插件，用于监控指定的进程、数据库等数据信息。
 
 -  [disk_io](https://github.com/Polaris0112/Ops-Tools/tree/master/zabbix_plugins/disk_io)：关于硬盘io的监控插件
-  -  `disk_discovery.conf`：zabbix插件的配置文件，放到根据`agent`设置的`include`参数的路径中
-  -  `disk_discovery.sh`：自动发现的脚本，请配合上述`conf`的路径进行配置（可以自定义路径）
-  -  `disk_io_monitor_templates.xml`：适配于zabbix3的模板xml，直接导入这个xml相当于添加模板
+ - `disk_discovery.conf`：zabbix插件的配置文件，放到根据`agent`设置的`include`参数的路径中
+ - `disk_discovery.sh`：自动发现的脚本，请配合上述`conf`的路径进行配置（可以自定义路径）
+ - `disk_io_monitor_templates.xml`：适配于zabbix3的模板xml，直接导入这个xml相当于添加模板
 
 -  [lvs](https://github.com/Polaris0112/Ops-Tools/tree/master/zabbix_plugins/lvs)：关于lvs监控插件
-  -  `lvs.conf`：对应`lvs`插件配置文件（脚本路径可能需要修改）
-  -  `lvs_active.sh`：检测`lvs`是否激活
-  -  `lvs_conn.sh`：检测`lvs`连通的个数
-  -  `lvs_status.sh`：检测`lvs`状态（80|443）
+  - `lvs.conf`：对应`lvs`插件配置文件（脚本路径可能需要修改）
+  - `lvs_active.sh`：检测`lvs`是否激活
+  - `lvs_conn.sh`：检测`lvs`连通的个数
+  - `lvs_status.sh`：检测`lvs`状态（80|443）
 
 -  [mysql](https://github.com/Polaris0112/Ops-Tools/tree/master/zabbix_plugins/mysql)：关于mysql数据库监控插件
   -  `check_mysql_log.sh`：监控mysql的错误日志情况
