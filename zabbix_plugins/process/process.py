@@ -27,7 +27,7 @@ def check_file(path):
     return True
             
 
-def getdate(file_path):
+def getdata(file_path):
     check_file('/tmp/top.txt')
     with open(file_path) as f:
         top_content = f.readlines()
@@ -39,7 +39,7 @@ def getdate(file_path):
     return result
 
 def topprogram(file_path):
-    date=getdate(file_path)
+    date=getdata(file_path)
     top={}
     for i in date:
         if 't' in i[1]:
