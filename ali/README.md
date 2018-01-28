@@ -1,6 +1,6 @@
 ## 阿里云相关工具
 
-###使用介绍
+### 使用介绍
 
 -  `ecs_expansion.sh`：首先修改工具7-9行，分别是硬盘设备名`device`，分区名`part`和挂载点`node`为需要扩容的对应变量，然后执行`sh ecs_expansion.sh`即可。
 
