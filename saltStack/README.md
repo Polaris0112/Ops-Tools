@@ -4,9 +4,9 @@
 
 此工具是一键安装批量部署工具SaltStack服务端、客户端。
 
--  `salt-master.sh`：安装SaltStack服务端脚本，需要输入一个参数指定`master ip`，如`sh salt-master.sh  192.168.0.2`。
+- `salt-master.sh`：安装SaltStack服务端脚本，需要输入一个参数指定`master ip`，如`sh salt-master.sh  192.168.0.2`。
 
--  `salt-minion.sh`：安装SaltStack客户端脚本，同安装服务端脚本一样，需要指定`master ip`，如`sh salt-minion.sh  192.168.0.2`。
+- `salt-minion.sh`：安装SaltStack客户端脚本，同安装服务端脚本一样，需要指定`master ip`，如`sh salt-minion.sh  192.168.0.2`。
 
 
 ### SaltStack部分使用指南
