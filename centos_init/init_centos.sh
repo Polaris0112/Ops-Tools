@@ -2,11 +2,15 @@
 
 release_version=$(cat /etc/redhat-release|sed -r 's/.* ([0-9]+)\..*/\1/')
 
-#修改yum仓库
+#更换阿里云源
 yum install -y wget curl
 yum earse -y epel-release remi-release
 rm -f /etc/yum.repos.d/*
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+if [ $release_version -eq 6 ];then
+    wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+else
+    wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+fi
 yum install -y epel-release 
 yum install -y ntpd ntpdate
 
@@ -52,7 +56,7 @@ fi
 
 #安装必备软件
 yum groupinstall -y Development tools
-yum install -y libselinux-python rsync tree lrzsz net-tools bc iptraf iotop vim tmux sysstat gdb gcc gcc-c++ man xz
+yum install -y libselinux-python rsync tree lrzsz net-tools bc iptraf iotop vim tmux sysstat gdb gcc gcc-c++ man xz unzip ipython nmap
 
 #安装nginx
 yum install -y nginx
