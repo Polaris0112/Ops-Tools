@@ -1,11 +1,11 @@
 #!/bin/bash
 # Ali-ecs-q3-data-disk-expansion shell script
 # run as root
-# author  cjj0596
+# author  cjj
 
 
-disk="/dev/vdb"
-device="/dev/vdb1"
+device="/dev/vdb"
+part="/dev/vdb1"
 node="/data"
 
 ## 安装lsof方便查看在节点中正在打开的文件
@@ -36,16 +36,16 @@ p
 
 
 wq
-" | /sbin/fdisk $disk # > /dev/null 2>&1
+" | /sbin/fdisk $device # > /dev/null 2>&1
 
 
 ## 检查文件系统，并变更文件系统大小
-/sbin/e2fsck -f $device # > /dev/null 2>&1
-/sbin/resize2fs $device # > /dev/null 2>&1
+/sbin/e2fsck -f $part # > /dev/null 2>&1
+/sbin/resize2fs $part # > /dev/null 2>&1
 
 
 ## 重新挂载节点
-/bin/mount $device $node
+/bin/mount $part $node
 
 
 ## 查看结果
