@@ -1,0 +1,26 @@
+systemLog:
+   destination: "file"
+   path: "{{ path to log }}"
+   quiet: true
+   logAppend: true
+storage:
+   dbPath: "{{ path to data }}"
+   journal:
+      enabled: true
+   engine: "wiredTiger"
+   wiredTiger:
+      engineConfig:
+          cacheSizeGB: 1
+processManagement:
+   fork: true
+   pidFilePath: "{{ path to pid }}"
+net:
+   bindIp: "{{ ip }}"
+   port: {{ port }}
+sharding:
+   clusterRole: "configsvr"
+replication:
+  replSetName: "{{ replSet name }}"
+security:
+   keyFile: "{{ keyfile }}"
+
