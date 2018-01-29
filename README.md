@@ -31,7 +31,7 @@ Repository for tools
 
 -  [centos_init](https://github.com/Polaris0112/Ops-Tools/tree/master/centos_init)：操作系统，从最小安装的centos6/7，初始化安装各类适合开发环境的软件包
 
-
+-  [mongodb](https://github.com/Polaris0112/Ops-Tools/tree/master/mongodb)：MongoDB数据库，各种模式的配置文件模板，配置教程和备份回档工具
 
 
 
