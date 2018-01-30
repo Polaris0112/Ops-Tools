@@ -22,5 +22,6 @@ sharding:
 replication:
   replSetName: "{{ replSet name }}"
 security:
-   keyFile: "{{ keyfile }}"
+  authorization: enabled
+  keyFile: "{{ keyfile }}"
 

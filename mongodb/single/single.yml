@@ -25,4 +25,7 @@ processManagement:
 net:
    bindIp: "{{ ip }}"
    port: {{ port }}
+security:
+   authorization: enabled
+
 

@@ -14,5 +14,6 @@ sharding:
    configDB: {{ config_ip:port,config2_ip:port,config3_ip:port }}
    chunkSize: 64
 security:
+   authorization: enabled
    keyFile: "{{ keyfile }}"
 
