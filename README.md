@@ -33,6 +33,9 @@ Repository for tools
 
 -  [mongodb](https://github.com/Polaris0112/Ops-Tools/tree/master/mongodb)：MongoDB数据库，各种模式的配置文件模板，配置教程和备份回档工具
 
+-  [nginx](https://github.com/Polaris0112/Ops-Tools/tree/master/nginx)：Nginx服务器，配置反向代理和负载均衡文件模板
+
+-  [rsync](https://github.com/Polaris0112/Ops-Tools/tree/master/rsync)：Rsync文件传输，配置文件模板
 
 
 
