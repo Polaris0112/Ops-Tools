@@ -37,6 +37,8 @@ Repository for tools
 
 -  [rsync](https://github.com/Polaris0112/Ops-Tools/tree/master/rsync)：Rsync文件传输，配置文件模板
 
+-  [gitlab](https://github.com/Polaris0112/Ops-Tools/tree/master/gitlab)：用于存放gitlab-ce-8.8.0配置文件模板和auto-gitlab-backup配置文件模板
+
 
 
 
