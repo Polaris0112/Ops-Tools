@@ -7,7 +7,7 @@ yum install -y yum-utils device-mapper-persistent-data lvm2
 
 
 ## Docker-CE 
-cat > /etc/yum.repo.d/docker.repo <<EOF
+cat > /etc/yum.repos.d/docker.repo <<EOF
 [docker-ce-stable]
 name=Docker CE Stable - $basearch
 baseurl=https://download.docker.com/linux/centos/7/$basearch/stable
